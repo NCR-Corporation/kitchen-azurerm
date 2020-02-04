@@ -161,6 +161,13 @@
                 "description": "The nic name created inside of the resource group."
             }
         },
+        "vnetName": {
+            "type": "string",
+            "defaultValue": "myvnet",
+            "metadata": {
+                "description": "The name of the Virual Network inside of the resource group."
+            }
+        },
         "storageAccountType": {
             "type": "string",
             "defaultValue": "Standard_LRS",
@@ -204,7 +211,7 @@
         "vmName": "[parameters('vmName')]",
         "vmSize": "[parameters('vmSize')]",
         "vmIdentityType": "[if(parameters('systemAssignedIdentity'), if(empty(parameters('userAssignedIdentities')), 'SystemAssigned', 'SystemAssigned, UserAssigned'), if(empty(parameters('userAssignedIdentities')), 'None', 'UserAssigned'))]",
-        "virtualNetworkName": "vnet",
+        "virtualNetworkName": "[parameters('vnetName')]",
         "vnetID": "<%= vnet_id %>",
         "subnetRef": "[concat(variables('vnetID'),'/subnets/',variables('subnetName'))]"
     },
